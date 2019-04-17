@@ -19,7 +19,7 @@
             <ion-col size="4" offset="1">
               <ion-item>
                 <ion-label position="floating">Nombre de la Empresa</ion-label>
-                <ion-input></ion-input>
+                <ion-input required type="text" [(ngModel)]="nuevaEmpresa.nombre"></ion-input>
               </ion-item>
             </ion-col>
             <ion-col size="4" offset="2">
@@ -127,5 +127,66 @@
       </ion-grid>
     </ion-card-content>
   </ion-card>
-
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        Impactos
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="4">
+            <ion-row>
+              <ion-col size="4" offset="4">
+                <img src="../../assets/img/bptxt.jpeg" alt="">
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-list>
+                <ion-item *ngFor="let acciones of bp">
+                  <ion-label>{{acciones.accion}}</ion-label>
+                  <ion-checkbox slot="start"></ion-checkbox>
+                </ion-item>
+              </ion-list>
+            </ion-row>
+          </ion-col>
+          <ion-col size="4">
+              <ion-row>
+                <ion-col size="4" offset="4">
+                  <img src="../../assets/img/dstxt.jpeg" alt="">
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                  <ion-list>
+                    <ion-item *ngFor="let acciones of ds">
+                      <ion-label>{{acciones.accion}}</ion-label>
+                      <ion-checkbox slot="start" color="warning"></ion-checkbox>
+                    </ion-item>
+                  </ion-list>
+                </ion-row>
+            </ion-col>
+            <ion-col size="4">
+                <ion-row>
+                  <ion-col size="4" offset="4">
+                    <img src="../../assets/img/rntxt.jpeg" alt="">
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-list>
+                      <ion-item *ngFor="let acciones of rn">
+                        <ion-label>{{acciones.accion}}</ion-label>
+                        <ion-checkbox slot="start" color="success"></ion-checkbox>
+                      </ion-item>
+                    </ion-list>
+                  </ion-row>                
+              </ion-col>
+        </ion-row>
+        
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-button expand="full" (click)="guardarEmpresa()">Enviar</ion-button>
+  </ion-card>
 </ion-content>
