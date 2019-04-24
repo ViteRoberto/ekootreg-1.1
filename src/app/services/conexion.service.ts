@@ -17,18 +17,18 @@ export interface Accion {
 }
 
 export interface Empresa {
-  // activo: boolean;
-  // contacto: string;
-  // descripcion: string;
-  // direccion: string;
-  // facebook: string;
-  // funfact: string;
-  // imagen: string;
-  // logo: string;
-  // mail: string;
+  activo: boolean;
+  contacto: string;
+  descripcion: string;
+  direccion: string;
+  facebook: string;
+  funfact: string;
+  imagen: string;
+  logo: string;
+  mail: string;
   nombre: string;
-  // rfc: string;
-  // web: string;
+  rfc: string;
+  web: string;
 }
 
 @Injectable({

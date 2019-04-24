@@ -13,9 +13,22 @@ export class HomePage implements OnInit {
   bp: Accion[];
   ds: Accion[];
   rn: Accion[];
-  nuevaEmpresa: Empresa;
+  nuevaEmpresa : Empresa = {
+    activo: false,
+    contacto: "",
+    descripcion: "",
+    direccion: "",
+    facebook: "",
+    funfact: "",
+    imagen: "",
+    logo: "",
+    mail: "",
+    nombre: "",
+    rfc: "",
+    web: ""
+  };
 
-  constructor(private conexionService: ConexionService){  }
+  constructor(private conexionService: ConexionService){ }
 
   guardarEmpresa(){
     return this.conexionService.addEmpresa(this.nuevaEmpresa).then(() => {
@@ -25,7 +38,6 @@ export class HomePage implements OnInit {
 
   ngOnInit(){
 
-    this.nuevaEmpresa.nombre = "";
     this.conexionService.getCategorias().subscribe(res => {
       this.categorias = res;
       console.log(this.categorias);
