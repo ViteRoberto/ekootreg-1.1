@@ -7,8 +7,28 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content padding>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        Imagenes
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="4" offset="1">
+              <ion-label>Logotipo de la Empresa</ion-label>
+              <input type="file" (change)="prepararLogo($event.target.files)">
+          </ion-col>
+          <ion-col size="4" offset="2">
+              <ion-label>Imagen de la Empresa</ion-label>
+              <input type="file" (change)="prepararImagen($event.target.files)">              
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
   <ion-card>
     <ion-card-header>
       <ion-card-title>Datos Generales</ion-card-title>
@@ -25,7 +45,7 @@
             <ion-col size="4" offset="2">
               <ion-item>
                 <ion-label position="floating">RFC</ion-label>
-                <ion-input></ion-input>
+                <ion-input required type="text" [(ngModel)]="nuevaEmpresa.rfc"></ion-input>
               </ion-item>
             </ion-col>
           </ion-row>
@@ -33,32 +53,29 @@
             <ion-col size="4" offset="1">
               <ion-item>
                 <ion-label position="floating">Contacto</ion-label>
-                <ion-input></ion-input>
+                <ion-input required type="text" [(ngModel)]="nuevaEmpresa.contacto"></ion-input>
               </ion-item>
             </ion-col>
             <ion-col size="4" offset="2">
               <ion-item>
-                <ion-label position="floatin">E-mail</ion-label>
-                <ion-input></ion-input>
+                <ion-label position="floating">E-mail</ion-label>
+                <ion-input required type="email" [(ngModel)]="nuevaEmpresa.mail"></ion-input>
               </ion-item>
             </ion-col>
           </ion-row>
           <ion-row>
-            <ion-col size="7" offset="1">
+            <ion-col size="10" offset="1">
               <ion-item>
                 <ion-label position="floating">Descripción de la Empresa</ion-label>
-                <ion-textarea></ion-textarea>
+                <ion-textarea required [(ngModel)]="nuevaEmpresa.descripcion"></ion-textarea>
               </ion-item>
-            </ion-col>
-            <ion-col size="2" offset="1">
-                <ion-input type="file"></ion-input>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col size="10" offset="1">
               <ion-item>
                 <ion-label position="floating">Dirección</ion-label>
-                <ion-input></ion-input>
+                <ion-input required type="text" [(ngModel)]="nuevaEmpresa.direccion"></ion-input>
               </ion-item>
             </ion-col>
           </ion-row>     
@@ -75,22 +92,22 @@
           <ion-col size="3" offset="1">
             <ion-item>
               <ion-label position="floating">Sitio Web</ion-label>
-              <ion-input></ion-input>
+              <ion-input required type="url" [(ngModel)]="nuevaEmpresa.web"></ion-input>
             </ion-item>
           </ion-col>
           <ion-col size="3" offset="1">
             <ion-item>
               <ion-label position="floating">Facebook</ion-label>
-              <ion-input></ion-input>
+              <ion-input required type="text" [(ngModel)]="nuevaEmpresa.facebook"></ion-input>
             </ion-item>
           </ion-col>
           <ion-col size="3" offset="1">
             <ion-item>
               <ion-label position="floating">Instagram</ion-label>
-              <ion-input></ion-input>
+              <ion-input required type="text" [(ngModel)]="nuevaEmpresa.instagram"></ion-input>
             </ion-item>
           </ion-col>
-        </ion-row>         
+        </ion-row>      
       </ion-grid>
     </ion-card-content>
   </ion-card>
@@ -101,14 +118,11 @@
     <ion-card-content>
       <ion-grid>
         <ion-row>
-          <ion-col size="7" offset="1">
+          <ion-col size="10" offset="1">
             <ion-item>
               <ion-label position="floating">EcoFact</ion-label>
-              <ion-textarea></ion-textarea>
+              <ion-textarea required [(ngModel)]="nuevaEmpresa.funfact"></ion-textarea>
             </ion-item>
-          </ion-col>
-          <ion-col size="2" offset="1">
-              <ion-input type="file"></ion-input>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -119,7 +133,7 @@
               </ion-list-header>
               <ion-item *ngFor="let cat of categorias">
                 <ion-label>{{cat.categoria}}</ion-label>
-                <ion-checkbox slot="end"></ion-checkbox>
+                <ion-checkbox slot="end" [(ngModel)]="cat.checked"></ion-checkbox>
               </ion-item>
             </ion-list>
           </ion-col>
@@ -146,7 +160,7 @@
               <ion-list>
                 <ion-item *ngFor="let acciones of bp">
                   <ion-label>{{acciones.accion}}</ion-label>
-                  <ion-checkbox slot="start"></ion-checkbox>
+                  <ion-checkbox slot="start" [(ngModel)]="acciones.checked"></ion-checkbox>
                 </ion-item>
               </ion-list>
             </ion-row>
@@ -161,7 +175,7 @@
                   <ion-list>
                     <ion-item *ngFor="let acciones of ds">
                       <ion-label>{{acciones.accion}}</ion-label>
-                      <ion-checkbox slot="start" color="warning"></ion-checkbox>
+                      <ion-checkbox slot="start" color="warning" [(ngModel)]="acciones.checked"></ion-checkbox>
                     </ion-item>
                   </ion-list>
                 </ion-row>
@@ -176,7 +190,7 @@
                     <ion-list>
                       <ion-item *ngFor="let acciones of rn">
                         <ion-label>{{acciones.accion}}</ion-label>
-                        <ion-checkbox slot="start" color="success"></ion-checkbox>
+                        <ion-checkbox slot="start" color="success"[(ngModel)]="acciones.checked"></ion-checkbox>
                       </ion-item>
                     </ion-list>
                   </ion-row>                
