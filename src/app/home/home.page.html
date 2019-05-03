@@ -18,12 +18,12 @@
       <ion-grid>
         <ion-row>
           <ion-col size="4" offset="1">
-              <ion-label>Logotipo de la Empresa</ion-label>
+              <ion-label>Logotipo de la Empresa *</ion-label>
               <input type="file" (change)="prepararLogo($event.target.files)">
           </ion-col>
           <ion-col size="4" offset="2">
-              <ion-label>Imagen de la Empresa</ion-label>
-              <input type="file" (change)="prepararImagen($event.target.files)">              
+              <ion-label>Imagen de la Empresa *</ion-label>
+              <input type="file" (change)="prepararImagen($event.target.files)">
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -35,51 +35,77 @@
     </ion-card-header>
     <ion-card-content>
       <ion-grid>
-          <ion-row>
-            <ion-col size="4" offset="1">
-              <ion-item>
-                <ion-label position="floating">Nombre de la Empresa</ion-label>
-                <ion-input required type="text" [(ngModel)]="nuevaEmpresa.nombre"></ion-input>
-              </ion-item>
-            </ion-col>
-            <ion-col size="4" offset="2">
-              <ion-item>
-                <ion-label position="floating">RFC</ion-label>
-                <ion-input required type="text" [(ngModel)]="nuevaEmpresa.rfc"></ion-input>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col size="4" offset="1">
-              <ion-item>
-                <ion-label position="floating">Contacto</ion-label>
-                <ion-input required type="text" [(ngModel)]="nuevaEmpresa.contacto"></ion-input>
-              </ion-item>
-            </ion-col>
-            <ion-col size="4" offset="2">
-              <ion-item>
-                <ion-label position="floating">E-mail</ion-label>
-                <ion-input required type="email" [(ngModel)]="nuevaEmpresa.mail"></ion-input>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col size="10" offset="1">
-              <ion-item>
-                <ion-label position="floating">Descripción de la Empresa</ion-label>
-                <ion-textarea required [(ngModel)]="nuevaEmpresa.descripcion"></ion-textarea>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col size="10" offset="1">
-              <ion-item>
-                <ion-label position="floating">Dirección</ion-label>
-                <ion-input required type="text" [(ngModel)]="nuevaEmpresa.direccion"></ion-input>
-              </ion-item>
-            </ion-col>
-          </ion-row>     
-        </ion-grid>
+        <ion-row>
+          <ion-col size="10" offset="1">
+            <ion-item>
+              <ion-label position="floating">Nombre de la Empresa *</ion-label>
+              <ion-input required type="text" [(ngModel)]="nuevaEmpresa.nombre"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="4" offset="1">
+            <ion-item>
+              <ion-label position="floating">Razón Social *</ion-label>
+              <ion-input required type="text" [(ngModel)]="nuevaEmpresa.razon"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="4" offset="2">
+            <ion-item>
+              <ion-label position="floating">RFC *</ion-label>
+              <ion-input required type="text" [(ngModel)]="nuevaEmpresa.rfc"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="4" offset="1">
+            <ion-item>
+              <ion-label position="floating">Contacto *</ion-label>
+              <ion-input required type="text" [(ngModel)]="nuevaEmpresa.contacto"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="4" offset="2">
+            <ion-item>
+              <ion-label position="floating">E-mail *</ion-label>
+              <ion-input required type="email" [(ngModel)]="nuevaEmpresa.mail"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="10" offset="1">
+            <ion-item>
+              <ion-label position="floating">Dirección *</ion-label>
+              <ion-input required type="text" [(ngModel)]="nuevaEmpresa.direccion"></ion-input>
+            </ion-item>
+
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="10" offset="1">
+            <ion-item>
+              <ion-label position="floating">Misión</ion-label>
+              <ion-textarea [(ngModel)]="nuevaEmpresa.mision"></ion-textarea>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="10" offset="1">
+            <ion-item>
+              <ion-label position="floating">Visión</ion-label>
+              <ion-textarea [(ngModel)]="nuevaEmpresa.vision"></ion-textarea>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="10" offset="1">
+            <ion-item>
+              <ion-label position="floating">Descripción de la Empresa *</ion-label>
+              <ion-textarea required [(ngModel)]="nuevaEmpresa.descripcion"
+                placeholder="Describe tus principales productos y servicios."></ion-textarea>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-card-content>
   </ion-card>
   <ion-card>
@@ -107,7 +133,7 @@
               <ion-input required type="text" [(ngModel)]="nuevaEmpresa.instagram"></ion-input>
             </ion-item>
           </ion-col>
-        </ion-row>      
+        </ion-row>
       </ion-grid>
     </ion-card-content>
   </ion-card>
@@ -120,8 +146,11 @@
         <ion-row>
           <ion-col size="10" offset="1">
             <ion-item>
-              <ion-label position="floating">EcoFact</ion-label>
-              <ion-textarea required [(ngModel)]="nuevaEmpresa.funfact"></ion-textarea>
+              <ion-label position="floating">EcoFact | ¿Que es lo más importante que quieres resaltar en tus cliente? *
+              </ion-label>
+              <ion-textarea required [(ngModel)]="nuevaEmpresa.funfact"
+                placeholder="Platícanos un dato curioso... Ejemplo: Apoyamos a que nuestro personal termine algún grado escolar.">
+              </ion-textarea>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -150,6 +179,30 @@
     <ion-card-content>
       <ion-grid>
         <ion-row>
+          <ion-col size="12">
+            <ion-item>
+              <ion-label position="floating">¿Tu empresa impacta en el cuidado de medio ambiente?</ion-label>
+              <ion-textarea [(ngModel)]="nuevaEmpresa.factrn"></ion-textarea>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-item>
+              <ion-label position="floating">¿Tu empresa impacta en el desarrollo social?</ion-label>
+              <ion-textarea [(ngModel)]="nuevaEmpresa.factds"></ion-textarea>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-item>
+              <ion-label position="floating">¿Tu empresa impacta en el bienestar de tus clientes?</ion-label>
+              <ion-textarea [(ngModel)]="nuevaEmpresa.factbp"></ion-textarea>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
           <ion-col size="4">
             <ion-row>
               <ion-col size="4" offset="4">
@@ -166,37 +219,37 @@
             </ion-row>
           </ion-col>
           <ion-col size="4">
-              <ion-row>
-                <ion-col size="4" offset="4">
-                  <img src="../../assets/img/dstxt.jpeg" alt="">
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                  <ion-list>
-                    <ion-item *ngFor="let acciones of ds">
-                      <ion-label>{{acciones.accion}}</ion-label>
-                      <ion-checkbox slot="start" color="warning" [(ngModel)]="acciones.checked"></ion-checkbox>
-                    </ion-item>
-                  </ion-list>
-                </ion-row>
-            </ion-col>
-            <ion-col size="4">
-                <ion-row>
-                  <ion-col size="4" offset="4">
-                    <img src="../../assets/img/rntxt.jpeg" alt="">
-                  </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-list>
-                      <ion-item *ngFor="let acciones of rn">
-                        <ion-label>{{acciones.accion}}</ion-label>
-                        <ion-checkbox slot="start" color="success"[(ngModel)]="acciones.checked"></ion-checkbox>
-                      </ion-item>
-                    </ion-list>
-                  </ion-row>                
+            <ion-row>
+              <ion-col size="4" offset="4">
+                <img src="../../assets/img/dstxt.jpeg" alt="">
               </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-list>
+                <ion-item *ngFor="let acciones of ds">
+                  <ion-label>{{acciones.accion}}</ion-label>
+                  <ion-checkbox slot="start" color="warning" [(ngModel)]="acciones.checked"></ion-checkbox>
+                </ion-item>
+              </ion-list>
+            </ion-row>
+          </ion-col>
+          <ion-col size="4">
+            <ion-row>
+              <ion-col size="4" offset="4">
+                <img src="../../assets/img/rntxt.jpeg" alt="">
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-list>
+                <ion-item *ngFor="let acciones of rn">
+                  <ion-label>{{acciones.accion}}</ion-label>
+                  <ion-checkbox slot="start" color="success" [(ngModel)]="acciones.checked"></ion-checkbox>
+                </ion-item>
+              </ion-list>
+            </ion-row>
+          </ion-col>
         </ion-row>
-        
+
       </ion-grid>
     </ion-card-content>
   </ion-card>

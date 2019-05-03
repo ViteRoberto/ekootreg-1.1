@@ -30,13 +30,19 @@ export interface Empresa {
   direccion: string;
   facebook: string;
   funfact: string;
+  factrn: string;
+  factds: string;
+  factbp: string;
   fbid: string;
   imagen: string;
   instagram: string;
   logo: string;
   mail: string;
+  mision: string;
   nombre: string;
+  razon: string;
   rfc: string;
+  vision: string;
   web: string;
 }
 

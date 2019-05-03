@@ -22,12 +22,18 @@ export class HomePage implements OnInit {
     facebook: "",
     fbid: "",
     funfact: "",
+    factrn: "",
+    factds: "",
+    factbp: "",
     imagen: "",
     instagram: "",
     logo: "",
     mail: "",
+    mision: "",
     nombre: "",
+    razon: "",
     rfc: "",
+    vision: "",
     web: ""
   };
   fotoLogo : File;
@@ -39,7 +45,7 @@ export class HomePage implements OnInit {
   constructor(private conexionService: ConexionService, private alerta: AlertController){ }
 
   guardarEmpresa(){
-    if(this.nuevaEmpresa.contacto && this.nuevaEmpresa.descripcion && this.nuevaEmpresa.direccion && this.nuevaEmpresa.facebook && this.nuevaEmpresa.funfact && this.fotoLogo && this.fotoImagen && this.nuevaEmpresa.mail && this.nuevaEmpresa.nombre && this.nuevaEmpresa.rfc && this.nuevaEmpresa.web){
+    if(this.nuevaEmpresa.contacto && this.nuevaEmpresa.descripcion && this.nuevaEmpresa.direccion && this.nuevaEmpresa.funfact && this.fotoLogo && this.fotoImagen && this.nuevaEmpresa.mail && this.nuevaEmpresa.nombre && this.nuevaEmpresa.razon && this.nuevaEmpresa.rfc){
       return this.conexionService.addEmpresa(this.nuevaEmpresa, this.ultimo, this.fotoLogo, this.fotoImagen, this.categorias, this.bp, this.ds, this.rn);
     }else{
       this.lanzarAlerta('FALSO');
