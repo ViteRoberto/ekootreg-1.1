@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { AngularFireStorage, AngularFireUploadTask, createStorageRef, AngularFireStorageReference } from '@angular/fire/storage';
+import { AngularFireStorage, AngularFireUploadTask, AngularFireStorageReference } from '@angular/fire/storage';
 import { map, finalize } from 'rxjs/operators';
-import { Observable, from } from 'rxjs';
-import { inspectNativeElement } from '@angular/platform-browser/src/dom/debug/ng_probe';
+import { Observable } from 'rxjs';
 import { AlertController, LoadingController } from '@ionic/angular';
 
 
@@ -57,8 +56,6 @@ export class ConexionService {
 
   private categoriasCollection: AngularFirestoreCollection<Categoria>;
   private categorias: Observable<Categoria[]>;
-
-  // private catsCollection: AngularFirestoreCollection<Categoria>;
 
   private impactosCollection: AngularFirestoreCollection<Impacto>;
   private impactos: Observable<Impacto[]>;
@@ -199,43 +196,33 @@ export class ConexionService {
     }
 
     //CREANDO PATH PARA IMAGEN Y LOGO
-    const pathLogo = this.id.concat('-logo',tipoLogo);
-    const pathImagen = this.id.concat('-imagen',tipoImagen);
+    var pathLogo = this.id.concat('-logo',tipoLogo);
+    var pathImagen = this.id.concat('-imagen',tipoImagen);
 
     //SUBIENDO LOGO E IMAGEN
     this.taskLogo = this.st.upload(pathLogo,fotoLogo);
     this.taskImagen = this.st.upload(pathImagen,fotoImagen);    
 
-    //CREANDO REFERENCIA PARA OBTENER URL DOWNLOAD LOGO
+    //CREANDO REFERENCIA PARA OBTENER URL DOWNLOAD LOGO E IMAGEN
     this.refx = this.st.ref(pathLogo);
+    this.refy = this.st.ref(pathImagen);
+
     this.taskLogo.snapshotChanges().pipe(
       finalize(() => this.refx.getDownloadURL().subscribe(
-        download => {
-          this.downloadURLLogo = download;
-          this.updateEmpresaLogo(this.id,download);
-          this.contador = this.contador + 1;
-          if(this.contador == 2){
-            this.quitar();
-            this.lanzarAlerta();
-            this.contador = 0;
-          }
-        }
-      ))
-    ).subscribe();
+        downloadLogo => {
+          this.downloadURLLogo = downloadLogo;
+          this.updateEmpresaLogo(this.id,downloadLogo);
 
-    //CREANDO REFERENCIA PARA OBTENER URL DOWNLOAD IMAGEN
-    this.refy = this.st.ref(pathImagen);
-    this.taskImagen.snapshotChanges().pipe(
-      finalize(() => this.refx.getDownloadURL().subscribe(
-        download => {
-          this.downloadURLImagen = download;
-          this.updateEmpresaImagen(this.id,download);
-          this.contador = this.contador + 1;
-          if(this.contador == 2){
-            this.quitar();
-            this.lanzarAlerta();
-            this.contador = 0;
-          }
+          this.taskImagen.snapshotChanges().pipe(
+            finalize(() => this.refy.getDownloadURL().subscribe(
+              downloadImagen => {
+                this.downloadURLImagen = downloadImagen;
+                this.updateEmpresaImagen(this.id,downloadImagen);
+                this.quitar();
+                this.lanzarAlerta();
+              }
+            ))
+          ).subscribe();
         }
       ))
     ).subscribe();
@@ -308,6 +295,4 @@ export class ConexionService {
      });
      await alertaExito.present();
    }
-  //  getEmpresas(){
-  //  }
 }
